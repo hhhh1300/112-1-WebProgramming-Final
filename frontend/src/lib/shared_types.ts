@@ -14,9 +14,6 @@ export type ActivityData = {
   non_student_fee: number;
   student_fee: number;
   activity_tag: string;
-
-  //雖然不屬於activity table，但是為了方便，所以放在這裡
-  requirement: string;
 };
 
 const MemberDataSchema = z.object({
@@ -32,7 +29,7 @@ const MemberDataSchema = z.object({
 const ChatgroupDataSchema = z.object({
   chatgroup_id: z.string().max(100),
   activity_id: z.string().min(1).max(100),
-  chatname: z.string().min(1).max(20),
+  chat_name: z.string().min(1).max(20),
 });
 
 const StudentDataSchema = z.object({
@@ -42,6 +39,14 @@ const StudentDataSchema = z.object({
   department: z.string().min(1).max(50),
   grade: z.number().int().gte(0),
 });
+
+export type Message = {
+  message_id: string;
+  chatgroup_id: string;
+  member_id: string;
+  message_time: Date;
+  message_text: string;
+};
 
 export type CardData = Omit<ActivityData, 'requirement'>;
 
@@ -54,12 +59,15 @@ export type StudentData = z.infer<typeof StudentDataSchema>;
 export type UpdateUserPayload = Omit<MemberData, 'member_id'> &
   Omit<StudentData, 'member_id' | 'student_id'>;
 
-export type UpdateUserPasswordPayload = { old_password: string; new_password: string };
+export type UpdateUserPasswordPayload = {
+  old_password: string;
+  new_password: string;
+};
 
 export type UpdateUserResponse = StudentData;
 
 export type createActivityPayload = Omit<ActivityData, 'activity_id'> &
-  Pick<ChatgroupData, 'chatname'>;
+  Pick<ChatgroupData, 'chat_name'>;
 
 export type getActivityByTitlePayload = Pick<ActivityData, 'title'>;
 
@@ -95,7 +103,7 @@ export type insertMessagePayload = Pick<ChatgroupData, 'chatgroup_id'> & {
 export type rateActivityPayload = Pick<ActivityData, 'activity_id'> & {
   score: number;
   comment: string;
-} & Pick<MemberData, 'member_id'>;
+};
 
 export type getActivityRatingPayload = Pick<ActivityData, 'activity_id'>;
 

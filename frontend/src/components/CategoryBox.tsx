@@ -24,19 +24,21 @@ const CategoryBox = ({ icon: Icon, label, selected, href }: CategoryBoxProps) =>
         flex 
         flex-col 
         items-center 
-        justify-center 
+        justify-between
         gap-2
-        p-3
+        p-1
+        md:p-3
         border-b-2
         hover:text-neutral-800
         transition
         cursor-pointer
+        mb-[6pt]
         ${selected ? 'border-b-neutral-800' : 'border-transparent'}
         ${selected ? 'text-neutral-800' : 'text-neutral-500'}
       `}
     >
       <Icon size={26} />
-      <div className="font-medium text-sm">{label}</div>
+      <div className="font-medium text-sm text-center w-[4rem] md:w-full">{label}</div>
     </div>
   );
 };

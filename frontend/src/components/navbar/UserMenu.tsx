@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import Avatar from '../Avatar';
 
 import { AiOutlineMenu } from 'react-icons/ai';
+import { VscAdd } from 'react-icons/vsc';
 
 import { useMember } from '@/hooks/useMember';
 
@@ -43,8 +44,13 @@ const UserMenu = () => {
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
-        <Button variant="outline" onClick={() => router.push('/activity/create')}>
-          新增活動
+        <Button
+          className="text-sm font-medium text-neutral-500 hover:text-neutral-800 transition"
+          variant="outline"
+          onClick={() => router.push('/activity/create')}
+        >
+          <div className="hidden m-0 md:block md:mr-2">新增活動</div>
+          <VscAdd size={20}></VscAdd>
         </Button>
         <div
           ref={divRef}
@@ -69,7 +75,8 @@ const UserMenu = () => {
                 <MenuItem label="我主持的活動" onClick={() => handleClick('/user/host')} />
                 <MenuItem label="我追蹤的活動" onClick={() => handleClick('/user/follow')} />
                 <MenuItem label="我參加的活動" onClick={() => handleClick('/user/join')} />
-                <MenuItem label="聊天室" onClick={() => handleClick('/unchange_route')} />
+                <MenuItem label="聊天室" onClick={() => handleClick('/chatroom')} />
+                <MenuItem label="admin" onClick={() => handleClick('/admin')} />
                 <hr />
                 <MenuItem label="登出" onClick={handleLogout} />
               </>

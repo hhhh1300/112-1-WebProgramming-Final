@@ -6,23 +6,27 @@ import {
   getActivityByTitle,
   getJoinedActivity,
   getHostedActivity,
+  getActivityById,
+  getActivityCapacity,
+  getActivityComments,
+  getActivityRating,
+  getActivityMember,
+  deleteActivity,
+  joinActivity,
+  quitActivity,
+  rateActivity,
+  kickMember,
   // findActivityNeedAttention,
   // getActivityByTag,
   // getActivityByTime,
-  // getActivityMember,
   // getActivityNumber,
-  // getActivityRating,
-  // getAllMember,
-  // getChatgroup,
+  getAllMember,
+  getChatgroup,
   // getHostedActivity,
   // getJoinedActivity,
   // getJoinedActivityByTag,
-  // getMessage,
-  // insertMessage,
-  // joinActivity,
-  // kickMember,
-  // quitActivity,
-  // rateActivity,
+  getMessage,
+  insertMessage,
 } from '@/controllers/activity.controller';
 import express from 'express';
 import { isAuth } from '@/utils/isAuth';
@@ -43,6 +47,36 @@ router.get('/follow', isAuth, getFollowedActivity);
 // getActivityByTitle
 router.get('/title', getActivityByTitle);
 
+// getActivityById;
+router.get('/id', getActivityById);
+
+// getActivityCapacity
+router.get('/capacity', getActivityCapacity);
+
+// getActivityComments
+router.get('/comment', getActivityComments);
+
+// getActivityRating
+router.get('/rating', getActivityRating);
+
+//getActivityMember
+router.get('/member', getActivityMember);
+
+// deleteActivity
+router.delete('/', isAuth, deleteActivity);
+
+//joinActivity
+router.post('/join', isAuth, joinActivity);
+
+// quitActivity
+router.delete('/quit', isAuth, quitActivity);
+
+//rateActivity
+router.post('/rate', rateActivity);
+
+//kickMember
+router.delete('/kick', kickMember);
+
 //getActivityByTime
 // router.get('/:event_start_timestamp/:event_end_timestamp', getActivityByTime);
 
@@ -52,12 +86,6 @@ router.get('/title', getActivityByTitle);
 //getJoinedActivityByTag
 // router.get('/:activity_tag/join', getJoinedActivityByTag);
 
-//joinActivity
-// router.post('/join', joinActivity);
-
-//quitActivity
-// router.delete('/:activity_id/:member_id', quitActivity);
-
 //getJoinedActivity
 router.get('/join', isAuth, getJoinedActivity);
 
@@ -65,33 +93,21 @@ router.get('/join', isAuth, getJoinedActivity);
 router.get('/host', isAuth, getHostedActivity);
 
 //getChatgroup
-// router.get('/:activity_id/chatgroup', getChatgroup);
+router.get('/:activity_id/chatgroup', getChatgroup);
 
 //getMessage
-// router.get('/chatgroup/:chatgroup_id/message', getMessage);
+router.get('/chatgroup/:chatgroup_id/message', getMessage);
 
 //insertMessage
-// router.post('/chatgroup/message', insertMessage);
-
-//rateActivity
-// router.post('/rate', rateActivity);
-
-//getActivityRating
-// router.get('/:activity_id/rating', getActivityRating);
+router.post('/chatgroup/message', insertMessage);
 
 //getActivityNumber
 // router.get('/:activity_id/number', getActivityNumber);
-
-//getActivityMember
-// router.get('/:activity_id/member', getActivityMember);
-
-//kickMember
-// router.delete('/:activity_id/:member_id', kickMember);
 
 //findActivityNeedAttention
 // router.get('/attention', findActivityNeedAttention);
 
 //getAllMember
-// router.get('/member', getAllMember);
+router.get('/allmember', getAllMember);
 
 export default router;

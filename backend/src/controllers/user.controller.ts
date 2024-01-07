@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextFunction, Request, Response } from 'express';
 import { Client } from 'pg';
 import { v4 as uuidv4 } from 'uuid';

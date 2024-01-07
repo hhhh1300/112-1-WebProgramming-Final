@@ -32,7 +32,7 @@ export function MessagesProvider({ children }: Props) {
     const initSocket = () => {
       const socket = io('http://localhost:8080');
       socket.on('receive_message', (newMessage: Message) => {
-        console.log('new message');
+        // console.log('new message');
         setMessages((messages) => [...messages, newMessage]);
       });
       setSocket(socket);
@@ -51,12 +51,12 @@ export function MessagesProvider({ children }: Props) {
         message_time: new Date(),
       };
       const data = await insertMessage(newMessage);
-      console.log(data);
+      // console.log(data);
       if (data && data.data) {
         socket.emit('send_message', data.data.message);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
